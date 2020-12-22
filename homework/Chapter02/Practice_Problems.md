@@ -67,3 +67,33 @@ A. 0x605c + 0x5 = 0x6061
 B. 0x605c − 0x20 = 0x603c
 C. 0x605c + 32 = 0x605c + 0x20 = 0x607c
 D. 0x60fa − 0x605c = 0x9e
+
+## Practice Problem 2.5
+
+| Length | Little endian | Big endian |
+| :----: | :-----------: | :--------: |
+|   1    |      78       |     12     |
+|   2    |     78 56     |   12 34    |
+|   3    |   78 56 34    |  12 34 56  |
+
+## Practice Problem 2.6
+
+A.
+
+0x0027C8F8 = 0000 0000 0010 0111 1100 1000 1111 1000
+
+0x4A1F23E0 = 0100 1010 0001 1111 0010 0011 1110 0000
+
+B.
+
+```text
+00000000001001111100100011111000
+           *********************
+  01001010000111110010001111100000
+```
+
+21 bits match
+
+C.
+
+Leading part of integer bits and both sides of floating-point number bits do not match
