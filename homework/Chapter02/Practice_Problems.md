@@ -132,7 +132,9 @@ A.
 B.
 
 Blue | Green = Cyan
+
 Yellow & Cyan = Green
+
 Red ^ Magenta = Blue
 
 ## Practice Problem 2.10
