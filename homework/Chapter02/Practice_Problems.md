@@ -97,3 +97,104 @@ B.
 C.
 
 Leading part of integer bits and both sides of floating-point number bits do not match
+
+## Practice Problem 2.7
+
+6d 6e 6f 70 71 72
+
+## Practice Problem 2.8
+
+| Operation |    Result    |
+| :-------: | :----------: |
+|    `a`    | `[01001110]` |
+|    `b`    | `[11100001]` |
+|   `~a`    | `[10110001]` |
+|   `~b`    | `[00011110]` |
+|  `a & b`  | `[01000000]` |
+|  `a | b`  | `[11101111]` |
+|  `a ^ b`  | `[10101111]` |
+
+## Practice Problem 2.9
+
+A.
+
+|   R   |   G   |   B   |  Color  | Complement |
+| :---: | :---: | :---: | :-----: | :--------: |
+|   0   |   0   |   0   |  Black  |   White    |
+|   0   |   0   |   1   |  Blue   |   Yellow   |
+|   0   |   1   |   0   |  Green  |  Magenta   |
+|   0   |   1   |   1   |  Cyan   |    Red     |
+|   1   |   0   |   0   |   Red   |    Cyan    |
+|   1   |   0   |   1   | Magenta |   Green    |
+|   1   |   1   |   0   | Yellow  |    Blue    |
+|   1   |   1   |   1   |  White  |   Black    |
+
+B.
+
+Blue | Green = Cyan
+Yellow & Cyan = Green
+Red ^ Magenta = Blue
+
+## Practice Problem 2.10
+
+|   Step    | `*x`  | `*y`  |
+| :-------: | :---: | :---: |
+| Initially |   a   |   b   |
+|  Step 1   |   a   | a ^ b |
+|  Step 2   |   b   | a ^ b |
+|  Step 3   |   b   |   a   |
+
+## Practice Problem 2.11
+
+A.
+
+k, k
+
+B.
+
+x and y are pointing at the same element
+
+C.
+
+Line 4: `first < last;`
+
+## Practice Problem 2.12
+
+A. `x & 0xFF`
+
+B. `(~x & ~0xFF) | (x & 0xFF) = x ^ ~0xFF`
+
+C. `x | 0xFF`
+
+## Practice Problem 2.13
+
+```c
+int bis(int x, int m) {
+    return x | m;
+}
+
+int bic(int x, int m) {
+    return x & ~m;
+}
+```
+
+```c
+/* Compute x|y using only calls to functions bis and bic */
+int bool_or(int x, int y) {
+    int result = bis(x, y);
+    return result;
+}
+```
+
+```c
+/**
+ * Compute x^y using only calls to functions bis and bic
+ * x ^ y = (x & ~y) | (~x & y)
+ */
+int bool_xor(int x, int y) {
+    // int result = bis(x, y) - bic(x, ~y);  // Overflow, not only function call
+    // int result = bis(bic(x, y), bic(~x, ~y));  // Not only function call
+    int result = bis(bic(x, y), bic(y, x));
+    return result;
+}
+```
