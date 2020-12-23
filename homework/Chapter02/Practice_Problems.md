@@ -151,17 +151,11 @@ Red ^ Magenta = Blue
 
 ## Practice Problem 2.11
 
-A.
+A. k, k
 
-k, k
+B. x and y are pointing at the same element
 
-B.
-
-x and y are pointing at the same element
-
-C.
-
-Line 4: `first < last;`
+C. Line 4: `first < last;`
 
 ## Practice Problem 2.12
 
