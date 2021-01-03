@@ -299,3 +299,45 @@ C. `[11100]` = $-2^5+2^4+2^3+2^2=-4$
 | 0x87654321 | 0x00000021 | 0x00000021 |
 | 0x000000C9 | 0x000000C9 | 0xFFFFFFC9 |
 | 0xEDCBA987 | 0x00000087 | 0xFFFFFF87 |
+
+## Practice Problem 2.24
+
+| Hex Original | Hex Truncated | Unsigned Original | Unsigned Truncated | Two’s complement Original | Two’s complement Truncated |
+| :----------: | :-----------: | :---------------: | :----------------: | :-----------------------: | :------------------------: |
+|      1       |       1       |         1         |       __1__        |             1             |           __1__            |
+|      3       |       3       |         3         |       __3__        |             3             |           __3__            |
+|      5       |       5       |         5         |       __5__        |             5             |           __-3__           |
+|      C       |       4       |        12         |       __4__        |            -4             |           __-4__           |
+|      E       |       6       |        14         |       __6__        |            -2             |           __-2__           |
+
+## Practice Problem 2.25
+
+Line 6: `for (i = 0; i < length; i++)`
+
+## Practice Problem 2.26
+
+A. The result is incorrect when `strlen(s) < strlen(t)`
+
+B. Subtraction of unsigned numbers may lead to unsigned number overflow.
+
+C. `return strlen(s) > strlen(t);`
+
+## Practice Problem 2.27
+
+```c
+/* Determine whether arguments can be added without overflow */
+int uadd_ok(unsigned x, unsigned y) {
+    if (x + y >= x) {
+        return 1;
+    } else {
+        return 0;
+    }
+}
+```
+
+```c
+/* Determine whether arguments can be added without overflow */
+int uadd_ok(unsigned x, unsigned y) {
+    return x + y >= x;
+}
+```
