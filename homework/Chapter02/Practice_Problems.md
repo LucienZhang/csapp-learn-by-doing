@@ -341,3 +341,83 @@ int uadd_ok(unsigned x, unsigned y) {
     return x + y >= x;
 }
 ```
+
+## Practice Problem 2.28
+
+| $x$ Hex | $x$ Decimal | $-^u_4x$ Decimal | $-^u_4x$ Hex |
+| :-----: | :---------: | :--------------: | :----------: |
+|    1    |      1      |        15        |      F       |
+|    4    |      4      |        12        |      C       |
+|    7    |      7      |        9         |      9       |
+|    A    |     10      |        6         |      6       |
+|    E    |     14      |        2         |      2       |
+
+## Practice Problem 2.29
+
+|    $x$    |    $y$    |   $x+y$    | $x+^t_5y$ | Case  |
+| :-------: | :-------: | :--------: | :-------: | :---: |
+|    -12    |    -15    |    -27     |     5     |   1   |
+| `[10100]` | `[10001]` | `[100101]` | `[00101]` |       |
+|    -8     |    -8     |    -16     |    -16    |   2   |
+| `[11000]` | `[11000]` | `[110000]` | `[10000]` |       |
+|    -9     |     8     |     -1     |    -1     |   2   |
+| `[10111]` | `[01000]` | `[11111]`  | `[11111]` |       |
+|     2     |     5     |     7      |     7     |   3   |
+| `[00010]` | `[00101]` | `[00111]`  | `[00111]` |       |
+|    12     |     4     |     16     |    -16    |   4   |
+| `[01100]` | `[00100]` | `[10000]`  | `[10000]` |       |
+
+## Practice Problem 2.30
+
+```c
+/* Determine whether arguments can be added without overflow */
+/**
+ * This is my original solution, but it's buggy, it returns incorrect value when x == y == INT_MIN
+ */
+#include <stdbool.h>
+int tadd_ok(int x, int y) {
+    bool x_positive = x > 0;
+    bool y_positive = y > 0;
+    bool sum_positive = x + y > 0;
+    return !(!(x_positive ^ y_positive) && (x_positive ^ sum_positive));
+}
+```
+
+```c
+/* Determine whether arguments can be added without overflow */
+/**
+ * Addition doesn't overflow if either x or y equals 0
+ * This form is easy to remember and conforms the principle stated on page 128
+ */
+int tadd_ok(int x, int y) {
+    int sum = x + y;
+    int neg_over = x < 0 && y < 0 && sum >= 0;
+    int pos_over = x > 0 && y > 0 && sum <= 0;
+    return !neg_over && !pos_over;
+}
+```
+
+```c
+/* Determine whether arguments can be added without overflow */
+/**
+ * This is the solution from the book, but it's less readable.
+ */
+int tadd_ok(int x, int y) {
+    int sum = x + y;
+    int neg_over = x < 0 && y < 0 && sum >= 0;
+    int pos_over = x >= 0 && y >= 0 && sum < 0;
+    return !neg_over && !pos_over;
+}
+```
+
+## Practice Problem 2.31
+
+This function always return 1 even for overflow cases
+
+__Two’s complement addition forms an abelian group, so the expression (x+y)-x will evaluate to y regardless of whether or not the addition overﬂows, and (x+y)-y will always evaluate to x.__
+
+## Practice Problem 2.32
+
+Because of the asymmetry, it returns incorrect answer when y equals INT_MIN
+
+__One lesson to be learned from this exercise is that TMin should be included as one of the cases in any test procedure for a function.__
