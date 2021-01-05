@@ -421,3 +421,59 @@ __Two’s complement addition forms an abelian group, so the expression (x+y)-x 
 Because of the asymmetry, it returns incorrect answer when y equals INT_MIN
 
 __One lesson to be learned from this exercise is that TMin should be included as one of the cases in any test procedure for a function.__
+
+## Practice Problem 2.33
+
+| $x$ Hex | $x$ Decimal | $-^t_4x$ Decimal | $-^u_4x$ Hex |
+| :-----: | :---------: | :--------------: | :----------: |
+|    2    |      2      |        -2        |      E       |
+|    3    |      3      |        -3        |      D       |
+|    9    |     -7      |        7         |      7       |
+|    B    |     -5      |        5         |      5       |
+|    C    |     -4      |        4         |      4       |
+
+$$
+x+-^u_4x=2^4 \\[2mm]
+x+-^t_4x=2^4
+$$
+
+## Practice Problem 2.34
+
+|       Mode       |     x      |     y      |  $x\cdot y$   | Truncated $x\cdot y$ |
+| :--------------: | :--------: | :--------: | :-----------: | :------------------: |
+|     Unsigned     | 4 `[100]`  | 5 `[101]`  | 20  `[10100]` |     4   `[100]`      |
+| Two’s complement | -4 `[100]` | -3 `[101]` | 12  `[01100]` |     -4   `[100]`     |
+|     Unsigned     | 2 `[010]`  | 7 `[111]`  | 14  `[1110]`  |     6   `[110]`      |
+| Two’s complement | 2 `[010]`  | -1 `[111]` |  -2  `[110]`  |     -2   `[110]`     |
+|     Unsigned     | 6 `[110]`  | 6 `[110]`  | 36 `[100100]` |     4   `[100]`      |
+| Two’s complement | -2 `[110]` | -2 `[110]` |  4  `[0100]`  |     -4   `[100]`     |
+
+<!-- ## Practice Problem 2.35
+
+1. We have
+   $$
+   p=x*^t_w y \\[2mm]
+   =U2T_w((x \cdot y) \mod 2^w)
+   $$
+   Let $u=(x \cdot y) \mod 2^w$, then
+   $$
+   u=x \cdot y+k2^w \\[5mm]
+   p=U2T_w(u)=−u_{w−1}2^w + u \\[2mm]
+   =−u_{w−1}2^w + x \cdot y+k2^w \\[2mm]
+   =x \cdot y + (k−u_{w−1})2^w \\[5mm]
+   x \cdot y=p+(u_{w−1}-k)2^w = p+t2^w
+   $$
+
+   If the computation doesn't overflow, $x\cdot y=p$, thus $t=0$ in $x\cdot y=p+t2^w$, thus $t \ne 0 \rArr overflow$
+   $$
+   \text{The computation overflows} \\[2mm]
+   \Leftrightarrow x\cdot y \ne p \\[2mm]
+   \Leftrightarrow t \ne 0
+   $$
+2. We have
+   $$
+   p=x \cdot y - t2^w \\[5mm]
+   q=p/x \\[2mm]
+   =y-t2^w / x
+   $$ -->
+
