@@ -448,7 +448,7 @@ $$
 |     Unsigned     | 6 `[110]`  | 6 `[110]`  | 36 `[100100]` |     4   `[100]`      |
 | Two’s complement | -2 `[110]` | -2 `[110]` |  4  `[0100]`  |     -4   `[100]`     |
 
-<!-- ## Practice Problem 2.35
+## Practice Problem 2.35
 
 1. We have
    $$
@@ -464,16 +464,80 @@ $$
    x \cdot y=p+(u_{w−1}-k)2^w = p+t2^w
    $$
 
-   If the computation doesn't overflow, $x\cdot y=p$, thus $t=0$ in $x\cdot y=p+t2^w$, thus $t \ne 0 \rArr overflow$
    $$
-   \text{The computation overflows} \\[2mm]
-   \Leftrightarrow x\cdot y \ne p \\[2mm]
-   \Leftrightarrow t \ne 0
+   \text{The computation overflows} \Leftrightarrow x\cdot y \ne p \Leftrightarrow t \ne 0 \\[2mm]
+   \text{The computation does not overflow} \Leftrightarrow x\cdot y = p \Leftrightarrow t = 0
    $$
-2. We have
-   $$
-   p=x \cdot y - t2^w \\[5mm]
-   q=p/x \\[2mm]
-   =y-t2^w / x
-   $$ -->
 
+2. Apparent
+
+3. We have
+   $$
+   p=x \cdot y - t2^w=x \cdot q + r \\[5mm]
+   \left. \begin{gathered}
+   q=y \Leftrightarrow x \cdot y = x \cdot q \Leftrightarrow -t2^w=r \\
+   |r|<|x| < 2^w
+   \end{gathered} \right\}
+   \Leftrightarrow r=t=0
+   $$
+
+Thus if $x=0$, the computation does not overflow, otherwise $\text{The computation does not overflow} \Leftrightarrow t = 0 \Leftrightarrow p/x = y$
+
+## Practice Problem 2.36
+
+```c
+/* Determine whether arguments can be multiplied without overflow */
+int tmult_ok(int x, int y) {
+    // int64_t pll = x * y; This is incorrect, overflow can happen before casting
+    int64_t pll = (int64_t)x * y;  // The casting is critical
+    // return p >= INT32_MIN && p <= INT32_MAX;
+    return pll == (int) pll;  // This is better
+}
+```
+
+## Practice Problem 2.37
+
+A. when `int` multiplies with `uint64_t`, `int` will be implicitly casted to `uint64_t`, thus if `ele_cnt` is negative, it will be casted to a big positive integer and overflow is still possible (64-bit overflow). Furthermore, `malloc` takes 32-bit value as parameter, hence 32-bit overflow is still inevitable.
+
+B.
+
+```c
+/**
+ * Illustration of code vulnerability similar to that found in
+ * Sun’s XDR library.
+ */
+void *copy_elements(void *ele_src[], uint32_t ele_cnt, uint32_t ele_size) {
+    /**
+     * Allocate buffer for ele_cnt objects, each of ele_size bytes
+     * and copy from locations designated by ele_src
+     */
+    uint64_t required_size = ele_cnt * ele_size;
+    uint32_t request_size = (uint32_t)required_size;
+    if (required_size != request_size)
+        /* Overflow must have occurred. Abort operation */
+        return NULL;
+    void *result = malloc(request_size);
+    if (result == NULL)
+        /* malloc failed */
+        return NULL;
+    void *next = result;
+    int i;
+
+    for (i = 0; i < ele_cnt; i++) {
+        /* Copy object i to destination */
+        memcpy(next, ele_src[i], ele_size);
+        /* Move pointer to next memory region */
+        next += ele_size;
+    }
+    return result;
+}
+```
+
+## Practice Problem 2.38
+
+|  $k$  | $b=0$ | $b=a$ |
+| :---: | :---: | :---: |
+|   0   | `a*1` | `a*2` |
+|   1   | `a*2` | `a*3` |
+|   2   | `a*4` | `a*5` |
+|   3   | `a*8` | `a*9` |
