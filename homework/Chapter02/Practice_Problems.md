@@ -541,3 +541,51 @@ void *copy_elements(void *ele_src[], uint32_t ele_cnt, uint32_t ele_size) {
 |   1   | `a*2` | `a*3` |
 |   2   | `a*4` | `a*5` |
 |   3   | `a*8` | `a*9` |
+
+## Practice Problem 2.39
+
+`-(x<<m)`
+
+## Practice Problem 2.40
+
+|   K   | Shifts | Add/Subs |    Expression     |
+| :---: | :----: | :------: | :---------------: |
+|   7   |   1    |    1     |    `(x<<3)-x`     |
+|  30   |   4    |    3     |  `(x<<5)-(x<<1)`  |
+|  28   |   2    |    1     |  `(x<<5)-(x<<2)`  |
+|  55   |   2    |    2     | `(x<<6)-(x<<3)-x` |
+
+## Practice Problem 2.41
+
+if `n-m>1`, use form B; else, use form A
+
+## Practice Problem 2.42
+
+```c
+int32_t div16(int32_t x) {
+    int32_t bias = (x >> 31) & 15;
+    return (x + bias) >> 4;
+}
+```
+
+## Practice Problem 2.43
+
+M=31, N=8
+
+## Practice Problem 2.44
+
+A. False when `x=INT_MIN`
+
+B. True
+
+C. False when `x=65535`
+
+D. True
+
+E. False when `x=INT_MIN`
+
+F. ~~False when `x=-1 y=-1`~~ True, an int comparing with an unsigned int will be casted to an unsigned int.
+
+G. ~~False when `x=1 y=-1`~~ All numbers will be casted to unsigned int.
+
+> True. `~y` equals `-y-1`. `uy*ux` equals `x*y`. Thus, the left-hand side is equivalent to `x*-y-x+x*y`. (Here equal means bit-level equal)
