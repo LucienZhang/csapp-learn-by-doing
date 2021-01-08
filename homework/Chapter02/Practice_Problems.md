@@ -589,3 +589,25 @@ F. ~~False when `x=-1 y=-1`~~ True, an int comparing with an unsigned int will b
 G. ~~False when `x=1 y=-1`~~ All numbers will be casted to unsigned int.
 
 > True. `~y` equals `-y-1`. `uy*ux` equals `x*y`. Thus, the left-hand side is equivalent to `x*-y-x+x*y`. (Here equal means bit-level equal)
+
+## Practice Problem 2.45
+
+|  Fractional value   | Binary representation | Decimal representation |
+| :-----------------: | :-------------------: | :--------------------: |
+|    $\frac{1}{8}$    |         0.001         |         0.125          |
+|    $\frac{3}{4}$    |       __0.11__        |        __0.75__        |
+|   $\frac{25}{16}$   |      __1.1001__       |       __1.5625__       |
+| __$\frac{43}{16}$__ |        10.1011        |       __2.6875__       |
+|  __$\frac{9}{8}$__  |         1.001         |       __1.125__        |
+| __$\frac{47}{8}$__  |      __101.111__      |         5.875          |
+| __$\frac{51}{16}$__ |      __11.0011__      |         3.1875         |
+
+## Practice Problem 2.46
+
+A. $0.1_{10} − x = 0.000000000000000000000001100[1100]..._2$
+
+B. $1 \times 10^{-7}$
+
+C. 100 hours = 360000 seconds, difference will be $1 \times 10^{-7} \times 3600000 = 0.36s$
+
+D. 2000 m/s * 0.36 s = 720 m
