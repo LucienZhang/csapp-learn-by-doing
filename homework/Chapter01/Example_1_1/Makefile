@@ -1,6 +1,6 @@
 hello : hello.c
-	mkdir -p .bin
-	gcc -o .bin/hello hello.c
+	mkdir -p build
+	gcc -o build/hello hello.c
 
 clean :
-	rm -rf .bin
+	rm -rf build

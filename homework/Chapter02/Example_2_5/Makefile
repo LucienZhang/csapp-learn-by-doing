@@ -1,6 +1,6 @@
 show-bytes : show-bytes.c
-	mkdir -p .bin
-	gcc -o .bin/show-bytes show-bytes.c
+	mkdir -p build
+	gcc -o build/show-bytes show-bytes.c
 
 clean :
-	rm -rf .bin
+	rm -rf build
